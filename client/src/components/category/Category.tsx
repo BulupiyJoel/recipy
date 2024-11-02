@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaAngleRight } from 'react-icons/fa6'
+import VITE_API_URL from '../env/envKey'
 
 interface Category {
      id: number
