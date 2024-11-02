@@ -10,11 +10,11 @@ export default defineConfig({
       {
         target: 'https://recipy-y83p.onrender.com', // Replace with your Render endpoint
         changeOrigin: true,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Accept',
-        },
+        // headers: {
+        //   'Access-Control-Allow-Origin': '*',
+        //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        //   'Access-Control-Allow-Headers': 'Content-Type, Accept',
+        // },
       },
     },
   },
