@@ -1,0 +1,9 @@
+{
+     "sqlite3-editor.ui.conditionalFormatting": [
+          {
+               "database": "database.db",
+               "table": "users",
+               "column": "id"
+          }
+     ]
+}

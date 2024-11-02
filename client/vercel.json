@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    },
+    {
+      "source": "/api:path",
+      "destination": "https://recipy-y83p.onrender.com/:path"
+    }
+  ]
+}

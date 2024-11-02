@@ -1,0 +1,66 @@
+-- database: d:\I\PROJECTS\React\recipy\server\database.db
+
+CREATE TABLE recipes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    prep_time INTEGER,
+    cook_time INTEGER,
+    servings INTEGER,
+    difficulty TEXT CHECK(difficulty IN ('easy', 'medium', 'hard')),
+    cuisine TEXT,
+    image_url TEXT,
+    category_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+CREATE TABLE categories(
+     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+     name TEXT NOT NULL
+);
+
+CREATE TABLE ingredients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER,
+    ingredient_text TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE instructions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER,
+    step_number INTEGER,
+    instruction_text TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE tags (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE
+);
+
+CREATE TABLE recipe_tags (
+    recipe_id INTEGER,
+    tag_id INTEGER,
+    PRIMARY KEY (recipe_id, tag_id),
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+CREATE TABLE likes(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER NOT NULL,
+    userId INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id),
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
+
+CREATE TRIGGER set_updated_at
+AFTER UPDATE ON recipes
+FOR EACH ROW
+BEGIN
+    UPDATE recipes SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
+END;
