@@ -4,6 +4,7 @@ import { ArrowLeftCircle, ArrowRightCircle } from "react-bootstrap-icons";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import carouselImg from "../assets/img/me.jpg"
+import VITE_API_URL from './env/envKey';
 
 // Define the Slide interface
 interface Slide {
@@ -55,7 +56,7 @@ const PureReactCarousel = () => {
      useEffect(() => {
           const fetchSlides = async () => {
                try {
-                    const response = await axios.get(`/api/slides`);
+                    const response = await axios.get(`${VITE_API_URL}/api/slides`);
                     setSlides(response.data);
                     console.log("Slides: ", response.data);
                } catch (error) {
