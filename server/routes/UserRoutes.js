@@ -1,17 +1,23 @@
 import User from "../model/User.js";
 import app from "./RouteConfig.js";
 import Joi from "joi"
-
+import cors from "cors"
 
 const user = new User();
 
+
+
 const UserRoutes = () => {
+
+     app.use(cors())
+
      // Route pour obtenir tous les utilisateurs
      app.get("/api/user", async (req, res) => {
           await user.init()
           const users = await user.getAll()
           res.status(200).json(users)
      })
+
 
      // Route pour créer un nouvel utilisateur
      app.post('/api/user', async (req, res) => {
