@@ -108,8 +108,8 @@ const CategoryRecipe = () => {
      return (
           <ClientLayout>
                <div className="flex flex-col">
-                    <h1 className="text-gray-800 text-xl font-semibold">{t('diff_recipe_category')} {category?.name}</h1>
-                    {!customCarouselArrow(windowWidth) && (
+                    <h1 className="text-gray-800 lg:text-xl font-semibold sm:text-sm">{t('diff_recipe_category')} {category?.name}</h1>
+                    {(!customCarouselArrow(windowWidth) && recipies.length <= 0) && (
                          <p className="text-gray-800">Total slides : {totalSlides} <WarningOutlined className="text-blue-600" /> {t('swipe_to_see')} </p>
                     )}
                     <CarouselProvider
@@ -121,12 +121,12 @@ const CategoryRecipe = () => {
                          <Slider>
                               {Array.from({ length: totalSlides }).map((_, pageIndex) => (
                                    <Slide index={pageIndex} key={pageIndex}>
-                                        <div className="flex flex-wrap justify-center tablet:p-0 tablet:justify-evenly sm:justify-evenly gap-4 p-3">
+                                        <div className="flex flex-wrap justify-center md:p-0 md:justify-evenly sm:justify-evenly gap-4 p-3">
                                              {recipies.slice(pageIndex * itemsPerPage, pageIndex * itemsPerPage + itemsPerPage).map((recipe, index) => (
                                                   <div className="rounded-xl shadow-lg p-3 w-full sm:w-64 md:w-72 lg:w-80 h-max flex flex-col space-y-2" key={index}>
-                                                       <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt="" className='rounded-xl h-52 object-cover tablet:h-40' />
+                                                       <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt="" className='rounded-xl h-52 object-cover md:h-40' />
                                                        <Link to={`/recipe/${recipe.id}`}>
-                                                            <p className="text-gray-500 tablet:text-sm text-lg my-2 font-medium hidden sm:block">{recipe.title}</p>
+                                                            <p className="text-gray-500 md:text-sm text-lg my-2 font-medium hidden sm:block">{recipe.title}</p>
                                                             <p className="text-green-600 text-sm rounded-md bg-green-100 text-center p-1 font-medium">{t("learn_more")}</p>
                                                        </Link>
                                                        <div className="flex flex-row justify-between w-full">
@@ -164,7 +164,7 @@ const CategoryRecipe = () => {
                               ))}
                          </Slider>
                          {totalSlides > 6 && (
-                         <div className="flex flex-row justify-between w-full mt-3 gap-x-4 screen320:hidden">
+                         <div className="flex flex-row justify-between w-full mt-3 gap-x-4 sm:hidden">
                               <div className="border-gray-300 border-2 rounded-md text-sm font-medium p-2">
                                    <ButtonBack>{t("back")}</ButtonBack>
                               </div>

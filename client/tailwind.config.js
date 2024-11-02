@@ -21,7 +21,7 @@ export default {
         "mobile" : "0.5rem"
       },
       screens: {
-        'screen320': { 'raw': '(max-width: 320px) and (max-height: 680px)' },
+        'screen320': { 'raw': '(max-width: 375px) and (max-height: 680px)' },
         'tablet': { 'raw': '(max-width: 768px) and (max-height: 1080px)' },
       },
     },

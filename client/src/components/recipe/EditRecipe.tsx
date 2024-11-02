@@ -199,29 +199,29 @@ const EditRecipe: React.FC = () => {
      return (
           <ClientLayout>
                <div className="max-w-4xl mx-auto p-6">
-                    <h1 className="text-3xl font-bold mb-6 screen320:text-lg">{t('update_recipe')}</h1>
+                    <h1 className="lg:text-3xl font-bold mb-6 sm:text-lg">{t('update_recipe')}</h1>
                     <form onSubmit={handleSubmit} className="space-y-6">
                          <input type="hidden" name="userId" value={recipe.userId} />
                          <div>
-                              <label className="block mb-2 screen320:text-sm">{t('recipe_name')}</label>
+                              <label className="block mb-2 sm:text-sm">{t('recipe_name')}</label>
                               <input
                                    type="text"
                                    name="title"
                                    value={recipe.title}
                                    onChange={handleChange}
-                                   className="w-full p-2 border rounded placeholder:italic placeholder:text-sm screen320:text-sm"
+                                   className="w-full p-2 border rounded placeholder:italic placeholder:text-sm sm:text-sm"
                                    required
                                    placeholder="Pizza monza"
                               />
                          </div>
 
                          <div>
-                              <label className="block mb-2 screen320:text-sm">{t('description')}</label>
+                              <label className="block mb-2 sm:text-sm">{t('description')}</label>
                               <textarea
                                    name="description"
                                    value={recipe.description}
                                    onChange={handleChange}
-                                   className="w-full p-2 border rounded placeholder:italic placeholder:text-sm screen320:text-sm"
+                                   className="w-full p-2 border rounded placeholder:italic placeholder:text-sm sm:text-sm"
                                    rows={3}
                                    placeholder="Perfect..."
                               ></textarea>
@@ -229,88 +229,96 @@ const EditRecipe: React.FC = () => {
 
                          <div className="flex space-x-4">
                               <div className="flex-1">
-                                   <label className="block mb-2 screen320:text-sm">{t('prep_time')} (minutes)</label>
+                                   <label className="block mb-2 sm:text-sm">{t('prep_time')} (minutes)</label>
                                    <input
                                         type="number"
                                         name="prep_time"
                                         value={recipe.prep_time}
                                         onChange={handleChange}
-                                        className="w-full p-2 border rounded placeholder:italic placeholder:text-sm screen320:text-sm"
+                                        className="w-full p-2 border rounded placeholder:italic placeholder:text-sm sm:text-sm"
                                         placeholder='20'
                                    />
                               </div>
                               <div className="flex-1">
-                                   <label className="block mb-2 screen320:text-sm">{t('cook_time')} (minutes)</label>
+                                   <label className="block mb-2 sm:text-sm">{t('cook_time')} (minutes)</label>
                                    <input
                                         type="number"
                                         name="cook_time"
                                         value={recipe.cook_time}
                                         onChange={handleChange}
-                                        className="w-full p-2 border rounded placeholder:italic placeholder:text-sm screen320:text-sm"
+                                        className="w-full p-2 border rounded placeholder:italic placeholder:text-sm sm:text-sm"
                                         placeholder='15'
                                    />
                               </div>
                          </div>
 
                          <div>
-                              <h3 className="block mb-2 screen320:text-sm">{t('ingredients')}</h3>
-                              <div className="flex justify-between">
-                                   <p className="screen320:text-xs mb-1 screen320:hidden">{t('name')}</p>
-                                   <p className="screen320:text-xs mb-1 screen320:hidden">
-                                        {t('quantity')}</p>
-                              </div>
+                              <h3 className="block mb-2 sm:text-sm">{t('ingredients')}</h3>
                               {recipe.ingredients.map((ingredient, index) => (
-                                   <div key={index} className="flex flex-row justify-between screen320:flex-col space-x-2 mb-4 screen320:space-x-0 screen320:space-y-1">
-                                        <div className="flex flex-col w-full">
+                                   <div key={index} className="flex flex-col mb-4">
+                                        <div className="flex flex-col w-full sm:mb-2">
+                                             <label className='sm:text-xs sm:my-1'>{t('name')}</label>
                                              <input
                                                   type="text"
                                                   value={ingredient.name}
                                                   onChange={(e) => handleIngredientNameChange(index, e.target.value)}
-                                                  className="p-2 border rounded placeholder:italic placeholder:text-sm screen320:text-sm"
+                                                  className="p-2 sm:placeholder:text-xs border rounded placeholder:italic placeholder:text-sm text-sm"
                                                   required
                                                   placeholder="Oignon"
                                              />
                                         </div>
                                         <div className="flex flex-col w-full">
-                                             <label htmlFor="" className='screen320:text-xs mb- 1'></label>
+                                             <label className='sm:text-xs sm:my-1'>{t('quantity')}</label>
                                              <input
                                                   type="text"
                                                   value={ingredient.quantity}
                                                   onChange={(e) => handleIngredientQuantityChange(index, e.target.value)}
-                                                  className="p-2 border rounded placeholder:italic placeholder:text-sm screen320:text-sm"
+                                                  className="p-2 border sm:placeholder:text-xs rounded placeholder:italic placeholder:text-sm text-sm"
                                                   required
                                                   placeholder="1/2 portion"
                                              />
                                         </div>
-                                        {index != 0 && <button type="button" className={`screen320:text-xs ${removeButtonStyle}`} onClick={() => removeIngredient(index)}>{t('remove')}</button>}
+                                        {index !== 0 && (
+                                             <button type="button" className={`mt-2 ${removeButtonStyle} sm:text-xs`} onClick={() => removeIngredient(index)}>
+                                                  {t('remove')}
+                                             </button>
+                                        )}
                                    </div>
                               ))}
-                              <button type="button" onClick={addIngredient} className={`${addButtonStyle} screen320:text-xs`}>{t('add_ingredient')}</button>
+                              <button type="button" onClick={addIngredient} className={`${addButtonStyle} sm:text-xs`}>
+                                   {t('add_ingredient')}
+                              </button>
                          </div>
 
                          <div>
-                              <label className="block mb-2 screen320:text-sm">{t('instructions')}</label>
+                              <label className="block mb-2 sm:text-sm">{t('instructions')}</label>
                               {recipe.instructions.map((instruction, index) => (
-                                   <div key={index} className="flex space-x-4 mb-2">
+                                   <div key={index} className="flex flex-col mb-4">
                                         <textarea
                                              value={instruction}
                                              onChange={(e) => handleInstructionChange(index, e.target.value)}
-                                             className="w-full p-2 border rounded screen320:text-sm"
+                                             className="w-full p-2 border rounded text-sm"
                                              rows={3}
                                         ></textarea>
-                                        {index != 0 && <button type="button" onClick={() => removeInstruction(index)} className={`screen320:text-xs ${removeButtonStyle} h-10`}>{t('remove')}</button>}
+                                        {index !== 0 && (
+                                             <button type="button" className={`mt-2 ${removeButtonStyle} sm:text-xs`} onClick={() => removeInstruction(index)}>
+                                                  {t('remove')}
+                                             </button>
+                                        )}
                                    </div>
                               ))}
-                              <button type="button" onClick={addInstruction} className={`${addButtonStyle} screen320:text-xs`}>{t('add_instruction')}</button>
+                              <button type="button" onClick={addInstruction} className={`${addButtonStyle} sm:text-xs`}>
+                                   {t('add_instruction')}
+                              </button>
                          </div>
 
                          <div>
-                              <label className="block mb-2 screen320:text-sm">{t('difficulty')}</label>
+                              <label className="block mb-2 sm:text-sm">{t('difficulty')}</label>
                               <select
                                    name="difficulty"
                                    value={recipe.difficulty}
                                    onChange={handleChange}
-                                   className="w-full p-2 border rounded screen320:text-xs screen320:font-medium"
+                                   className="w-full p-2 border rounded sm:text-xs sm:font-medium"
                               >
                                    <option value="easy">{t('easy')}</option>
                                    <option value="medium">{t('medium')}</option>
@@ -319,12 +327,12 @@ const EditRecipe: React.FC = () => {
                          </div>
 
                          <div>
-                              <label className="block mb-2 screen320:text-sm">{t('category_cuisine')}</label>
+                              <label className="block mb-2 sm:text-sm">{t('category_cuisine')}</label>
                               <div className="flex flex-row space-x-1">
                                    <select
                                         name="category_id"
                                         onChange={handleChange}
-                                        className="w-full p-2 border rounded screen320:text-xs screen320:font-medium"
+                                        className="w-full p-2 border rounded sm:text-xs sm:font-medium"
                                         disabled={showOtherCategoryInput}
                                    >
                                         {categoriesData.map((category, index) => (
@@ -355,24 +363,24 @@ const EditRecipe: React.FC = () => {
                               )}
                          </div>
                          <div>
-                              <label className="block mb-2 screen320:text-sm">{t('tags')}</label>
+                              <label className="block mb-2 sm:text-sm">{t('tags')}</label>
                               <input
                                    type="text"
                                    name="tags"
                                    value={recipe.tags.map(tag => tag.name).join(', ')} // Show tag names
                                    onChange={handleTagsChange} // Use the new handler
-                                   className="w-full p-2 border rounded screen320:text-sm"
+                                   className="w-full p-2 border rounded sm:text-sm"
                               />
                          </div>
-                         <button type="submit" className="bg-blue-900 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded screen320:text-sm screen320:w-full">
+                         <button type="submit" className="bg-blue-900 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded sm:text-sm sm:w-full">
                               {t('update')}
                          </button>
                     </form>
                     <hr className='mt-5' />
                     <form action="">
                          <div>
-                              <label className="block mb-2 screen320:text-sm mt-5">Upload a new image</label>
-                              <div className="flex flex-row space-x-4 justify-between screen320:flex-col screen320:space-x-0 screen320:space-y-2">
+                              <label className="block mb-2 sm:text-sm mt-5">Upload a new image</label>
+                              <div className="flex flex-col lg:flex-row lg:space-x-4 justify-between md:flex-col sm:space-x-0 sm:space-y-2 space-y-2">
                                    <img src={`/api/images/${recipe.image}`} alt="" className="rounded-md object-cover sm:h-52 sm:w-3/4" />
                                    <div>
                                         <input
@@ -383,10 +391,10 @@ const EditRecipe: React.FC = () => {
                                              className="w-full p-2 border rounded"
                                              style={{ display: 'none' }}
                                         />
-                                        <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-blue-900 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded screen320:text-sm screen320:w-full">
+                                        <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-blue-900 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded sm:text-sm sm:w-full">
                                              {t("upload_image")}
                                         </button>
-                                        <button type="button" onClick={handleImageUpload} className='bg-blue-900 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded screen320:text-sm screen320:w-full mt-2 w-full'>{t('update')}</button>
+                                        <button type="button" onClick={handleImageUpload} className='bg-blue-900 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded sm:text-sm sm:w-full mt-2 w-full'>{t('update')}</button>
                                    </div>
                               </div>
                          </div>

@@ -42,7 +42,7 @@ const MyRecipes = () => {
                     setError("");
                     setMessage("Recipe deleted");
                     setShowModal(true);
-                    fetchRecipes()
+                    fetchRecipes();
                }
           } catch (error) {
                console.error(error);
@@ -61,16 +61,16 @@ const MyRecipes = () => {
 
      return (
           <ClientLayout>
-               <div className="max-w-6xl mx-auto p-6 h-screen">
-                    <h1 className="text-3xl font-bold mb-4 screen320:text-lg">{t("myrecipes")}</h1>
-                    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+               <div className="max-w-6xl mx-auto p-6">
+                    <h1 className="lg:text-3xl font-bold mb-4 sm:text-lg">{t("myrecipes")}</h1>
+                    <div className="mt-10 flex flex-wrap gap-6">
                          {recipes.map(recipe => (
-                              <div key={recipe.id} className="shadow-lg rounded-md p-4 flex flex-col">
-                                   <p className="text-gray-900 font-bold text-sm my-1 screen320:text-xs">{recipe.title}</p>
+                              <div key={recipe.id} className="shadow-lg rounded-md p-4 flex flex-col w-full sm:w-1/2 lg:w-1/3">
+                                   <p className="text-gray-900 font-bold text-sm my-1 sm:text-xs">{recipe.title}</p>
                                    <div className="flex flex-col sm:flex-row justify-between">
-                                        <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt={recipe.title} className='rounded-md h-28 w-full sm:w-32 sm:object-cover screen320:object-cover screen320:my-1' />
+                                        <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt={recipe.title} className='rounded-md h-28 w-full sm:w-32 sm:object-cover sm:my-1' />
                                         <div className="w-full ml-0 sm:ml-2 space-y-3">
-                                             <p className="text-blue-600 text-xs">{t('category')} : {recipe.category}</p>
+                                             <p className="text-blue-600 sm:text-xs">{t('category')} : {recipe.category}</p>
                                              <p className="text-green-600 text-xs">{t('difficulty')} : {t(recipe.difficulty)}</p>
                                              <div className="flex flex-row space-x-1 items-center">
                                                   <button className='text-red-500 text-sm' onClick={() => {
@@ -89,7 +89,7 @@ const MyRecipes = () => {
                               </div>
                          ))}
                          {recipes.length === 0 && (
-                              <div className="col-span-full flex justify-center">
+                              <div className="col-span-full flex justify-center w-full">
                                    <p className='bg-red-100 text-red-700 p-20 rounded-lg h-max font-semibold'>{t('no_recipes')}</p>
                               </div>
                          )}

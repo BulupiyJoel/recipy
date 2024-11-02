@@ -36,7 +36,7 @@ const PureReactCarousel = () => {
      const windowWidth = useWindowWidth(); // Get the current window width
 
      const windowBreakPoint = (value: number): number => {
-          if (value <= 320) {
+          if (value <= 640) {
                return 60
           } else if (value <= 768) {
                return 30
@@ -86,12 +86,12 @@ const PureReactCarousel = () => {
                          ))}
                     </Slider>
                     <div className="absolute top-0 left-0 w-full flex flex-col justify-between h-full p-4 bg-gradient-to-r from-black via-transparent to-transparent rounded-l-xl">
-                         <p className="text-orange-600 font-medium text-3xl screen320:text-sm">Recettes à la une</p>
+                         <p className="text-orange-600 font-medium text-3xl sm:text-sm">Recettes à la une</p>
                          <p className="text-white">
-                              <span className="font-semibold text-2xl screen320:text-sm">Mike's famous salad <br /> with cheese</span> <br />
-                              <span className="font-semibold text-sm  screen320:text-xs">By John Mike</span>
+                              <span className="font-semibold lg:text-2xl sm:text-sm">Mike's famous salad <br /> with cheese</span> <br />
+                              <span className="font-semibold lg:text-sm  sm:text-xs">By John Mike</span>
                          </p>
-                         <div className="flex justify-center items-center space-x-2 text-white mt-4 screen320:mt-2">
+                         <div className="flex justify-center items-center space-x-2 text-white mt-4 sm:mt-2">
                               {currentIndex > 0 && (
                                    <ButtonBack onClick={handleBack} aria-label="Previous Slide">
                                         <ArrowLeftCircle size={arrowSize(windowWidth)} />

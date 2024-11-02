@@ -96,9 +96,9 @@ function RecipeById() {
                          <div className="mb-4">
                               <img src={`${VITE_API_URL}/api/images/${recipe.image}`} alt={recipe.title} className="w-full h-52 object-cover rounded-md" />
                          </div>
-                         <h1 className="text-xl font-bold mb-2 screen320:text-sm">{recipe.title}</h1>
-                         <p className="text-gray-500 italic screen320:text-xs">{recipe.description}</p>
-                         <div className="flex flex-col justify-between mt-4 screen320:text-sm">
+                         <h1 className="lg:text-xl font-bold mb-2 sm:text-sm">{recipe.title}</h1>
+                         <p className="text-gray-500 italic sm:text-xs">{recipe.description}</p>
+                         <div className="flex flex-col justify-between mt-4 sm:text-sm">
                               <div className="flex items-center">
                                    <p className="text-gray-500">{t('prep_time')}:</p>
                                    <p className="ml-2">{recipe.prep_time} {t('minutes')}</p>
@@ -118,13 +118,13 @@ function RecipeById() {
                     <div className="flex flex-col space-y-3 w-full md:w-1/2 xl:w-2/3">
                          <div className="flex justify-between mb-4">
                               <button
-                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "ingredients" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"} screen320:text-xs screen320:font-semibold`}
+                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "ingredients" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"} sm:text-xs sm:font-semibold`}
                                    onClick={() => handleTabChange("ingredients")}
                               >
                                    {t('ingredients')} {/* Translated ingredients label */}
                               </button>
                               <button
-                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "instructions" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"} screen320:text-xs screen320:font-semibold`}
+                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "instructions" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"}  sm:text-xs sm:font-semibold`}
                                    onClick={() => handleTabChange("instructions")}
                               >
                                    {t('instructions')} {/* Translated instructions label */}
@@ -133,11 +133,11 @@ function RecipeById() {
 
                          {tab === "ingredients" ? (
                               <div className="flex flex-col space-y-3">
-                                   <h2 className="text-lg font-bold screen320:text-sm">{t('ingredients')} ({t('name')}-{t('quantity')}) : </h2>
+                                   <h2 className="lg:text-lg font-bold sm:text-sm">{t('ingredients')} ({t('name')}-{t('quantity')}) : </h2>
                                    <ul>
                                         {recipe.ingredients.map((ingredient, index) => (
                                              <div key={index}>
-                                                  <li className="flex justify-between mb-2 screen320:text-xs">
+                                                  <li className="flex justify-between mb-2 sm:text-xs">
                                                        <p>{ingredient.name}</p>
                                                        <p>{ingredient.quantity}</p>
                                                   </li>
@@ -147,7 +147,7 @@ function RecipeById() {
                                    </ul>
                               </div>
                          ) : (
-                              <div className="flex flex-col space-y-3 screen320:text-sm">
+                              <div className="flex flex-col space-y-3 sm:text-sm">
                                    <h2 className="text-lg font-bold">{t('instructions')} :</h2>
                                    <ol>
                                         {recipe.instructions.map((instruction, index) => (

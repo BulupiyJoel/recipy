@@ -94,7 +94,7 @@ const PublicNavBar = () => {
                </MegaMenu>
 
                {/* Desktop */}
-               <div className="screen320:hidden flex flex-row justify-between items-center tablet:hidden">
+               <div className="hidden lg:flex flex-row justify-between items-center">
                     {/* AppName */}
                     <AppLogo />
 

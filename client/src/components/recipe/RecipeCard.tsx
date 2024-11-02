@@ -88,8 +88,7 @@ const RecipeCard = () => {
 
      return (
           <div className="flex flex-col">
-
-               {!customCarouselArrow(windowWidth) && (
+               {(!customCarouselArrow(windowWidth) && recipies.length <= 0 ) && (
                     <p className="text-gray-800">Total slides : {totalSlides} <WarningOutlined className="text-blue-600" /> {t('swipe_to_see')} </p>
                )}
                <CarouselProvider
