@@ -3,6 +3,7 @@ import ClientLayout from "../../layout/ClientLayout";
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Modal, ModalBody, ModalFooter } from 'flowbite-react';
+import VITE_API_URL from '../env/envKey';
 
 interface RecipeState {
      title: string;
@@ -52,7 +53,6 @@ const Recipe: React.FC = () => {
      const [error, setError] = useState("");
      const [showModal, setShowModal] = useState(false);
      const [showOtherCategoryInput, setShowOtherCategoryInput] = useState(false);
-     const API_URL = import.meta.env.VITE_API_URL
 
      const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
           const { name, value } = e.target;
@@ -129,7 +129,7 @@ const Recipe: React.FC = () => {
                }
                formData.append('userId', recipe.userId);
 
-               const response = await axios.post(`${API_URL}/api/recipe`, formData, {
+               const response = await axios.post(`${VITE_API_URL}/api/recipe`, formData, {
                     headers: {
                          'Content-Type': 'multipart/form-data',
                     },
@@ -163,7 +163,7 @@ const Recipe: React.FC = () => {
      useEffect(() => {
           const fetchData = async () => {
                try {
-                    const response = await axios.get(`${API_URL}/api/category`);
+                    const response = await axios.get(`${VITE_API_URL}/api/category`);
                     setCategoriesData(response.data);
                } catch (error) {
                     console.error("Error fetching data:", error);
@@ -171,7 +171,7 @@ const Recipe: React.FC = () => {
           };
 
           fetchData();
-     }, []);
+     }, [VITE_API_URL]);
 
      return (
           <ClientLayout>

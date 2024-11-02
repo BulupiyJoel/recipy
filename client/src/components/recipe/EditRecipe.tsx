@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Modal, ModalBody, ModalFooter } from 'flowbite-react';
 import { useParams } from 'react-router-dom';
+import VITE_API_URL from '../env/envKey';
 
 interface RecipeState {
      title: string;
@@ -115,7 +116,7 @@ const EditRecipe: React.FC = () => {
           e.preventDefault();
 
           try {
-               const response = await axios.put(`/api/recipe/${id}`, {
+               const response = await axios.put(`${VITE_API_URL}/api/recipe/${id}`, {
                     title: recipe.title,
                     description: recipe.description,
                     prep_time: recipe.prep_time,
@@ -152,7 +153,7 @@ const EditRecipe: React.FC = () => {
                formData.append('newImage', recipe.newImage);
 
                try {
-                    const response = await axios.post(`/api/recipe/${id}/image`, formData, {
+                    const response = await axios.post(`${VITE_API_URL}/api/recipe/${id}/image`, formData, {
                          headers: {
                               'Content-Type': 'multipart/form-data',
                          },
@@ -172,7 +173,7 @@ const EditRecipe: React.FC = () => {
 
      const fetchData = async () => {
           try {
-               const response = await axios.get("/api/category");
+               const response = await axios.get(`${VITE_API_URL}/api/category`);
                setCategoriesData(response.data);
           } catch (error) {
                console.error("Error fetching data:", error);
@@ -181,7 +182,7 @@ const EditRecipe: React.FC = () => {
 
      const fetchRecipe = async () => {
           try {
-               const recipe = await axios.get(`/api/recipe/${id}`);
+               const recipe = await axios.get(`${VITE_API_URL}/api/recipe/${id}`);
                setRecipe(recipe.data);
           } catch (error) {
                console.error('Error fetching recipe : ', error);

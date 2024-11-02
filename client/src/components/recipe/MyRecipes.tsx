@@ -4,6 +4,7 @@ import { id as ussId } from '../auth/sessionData';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Modal, ModalBody, ModalFooter } from 'flowbite-react/components/Modal';
+import VITE_API_URL from '../env/envKey';
 
 interface Recipe {
      id: number;
@@ -27,7 +28,7 @@ const MyRecipes = () => {
 
      const fetchRecipes = async () => {
           try {
-               const response = await axios.get(`/api/recipe/user/${ussId}`);
+               const response = await axios.get(`${VITE_API_URL}/api/recipe/user/${ussId}`);
                setRecipes(response.data);
           } catch (error) {
                console.error(error);
@@ -36,7 +37,7 @@ const MyRecipes = () => {
 
      const handleRecipeDeletion = async (id: number) => {
           try {
-               const deleteResponse = await axios.delete(`/api/recipe/${id}`);
+               const deleteResponse = await axios.delete(`${VITE_API_URL}/api/recipe/${id}`);
                if (deleteResponse.data.isDeleted) {
                     setError("");
                     setMessage("Recipe deleted");
@@ -66,8 +67,8 @@ const MyRecipes = () => {
                          {recipes.map(recipe => (
                               <div key={recipe.id} className="shadow-lg rounded-md p-4 flex flex-col">
                                    <p className="text-gray-900 font-bold text-sm my-1 screen320:text-xs">{recipe.title}</p>
-                                   <div className="flex flex-col sm:flex-row">
-                                        <img src={`/api/images/${recipe.image_url}`} alt={recipe.title} className='rounded-md h-28 w-full sm:w-32 sm:object-cover screen320:object-cover screen320:my-1' />
+                                   <div className="flex flex-col sm:flex-row justify-between">
+                                        <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt={recipe.title} className='rounded-md h-28 w-full sm:w-32 sm:object-cover screen320:object-cover screen320:my-1' />
                                         <div className="w-full ml-0 sm:ml-2 space-y-3">
                                              <p className="text-blue-600 text-xs">{t('category')} : {recipe.category}</p>
                                              <p className="text-green-600 text-xs">{t('difficulty')} : {t(recipe.difficulty)}</p>

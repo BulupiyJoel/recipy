@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState } from "react"; // Import React
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
+import VITE_API_URL from "../env/envKey";
 
 const Register = () => {
      const [username, setUsername] = useState("");
@@ -18,7 +19,7 @@ const Register = () => {
           event.preventDefault();
 
           try {
-               const response = await axios.post(`/api/user`, {
+               const response = await axios.post(`${VITE_API_URL}/api/user`, {
                     username,
                     email,
                     password

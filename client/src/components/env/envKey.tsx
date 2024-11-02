@@ -1,3 +1,3 @@
-const API_URL = import.meta.env.RENDER_API_URL
+const VITE_API_URL = import.meta.env.VITE_API_URL
 
-export { API_URL }
+export default VITE_API_URL

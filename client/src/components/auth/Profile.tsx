@@ -3,9 +3,10 @@ import { useState } from 'react';
 import ClientLayout from '../../layout/ClientLayout';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import VITE_API_URL from '../env/envKey';
 
 const Profile = () => {
-     
+
      const location = useLocation();
      const user = location.state?.user;
      const { t } = useTranslation();
@@ -26,7 +27,7 @@ const Profile = () => {
      const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           try {
-               const response = await axios.put('/api/user/updateUser ', {
+               const response = await axios.put(`${VITE_API_URL}/api/user/updateUser`, {
                     username,
                     email,
                     id,

@@ -110,6 +110,13 @@ const UserRoutes = () => {
                     });
                }
 
+               if(authUser.userNotFound){
+                    return res.json({
+                         userNotFound : true,
+                         message : authUser.message
+                    })
+               }
+
                if (authUser) {
                     return res.json({
                          message: `User  successfully found`, user: authUser, isLoggedIn: true

@@ -4,6 +4,8 @@ import Footer from "../Footer";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import SVG from "../../assets/svg/iiisometric.svg"
 import { useTranslation } from "react-i18next";
+import VITE_API_URL from "../env/envKey";
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -17,12 +19,12 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post(`/api/user/login`, {
+            const response = await axios.post(`${VITE_API_URL}/api/user/login`, {
                 email,
                 password
             });
             console.log(`Login Response : ${response.data.message}`);
-            if (response.data.invalidPassword) {
+            if (response.data.invalidPassword || response.data.userNotFound) {
                 setMessage(response.data.message)
             }
             if (response.data.isLoggedIn) {

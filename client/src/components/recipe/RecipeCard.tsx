@@ -8,6 +8,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { customCarouselArrow } from './customCarouselArrow';
 import { WarningOutlined } from '@ant-design/icons';
 import ButtonCarousel from '../navigation/Carousel/Buttons';
+import VITE_API_URL from '../env/envKey';
 
 interface Recipy {
      id: number,
@@ -37,7 +38,7 @@ const RecipeCard = () => {
 
      const fetchRecipes = async () => {
           try {
-               const response = await axios.get(`/api/recipe`);
+               const response = await axios.get(`${VITE_API_URL}/api/recipe`);
                setRecipies(response.data);
           } catch (error) {
                console.error(error);
@@ -48,7 +49,7 @@ const RecipeCard = () => {
 
      const handleLike = async (recipeId: number) => {
           try {
-               await axios.post(`/api/like`, {
+               await axios.post(`${VITE_API_URL}/api/like`, {
                     recipe_id: recipeId,
                     userId: ussId
                });
@@ -103,7 +104,7 @@ const RecipeCard = () => {
                                    <div className="flex flex-wrap justify-center tablet:p-0 tablet:justify-evenly sm:justify-evenly gap-4 p-3">
                                         {recipies.slice(pageIndex * itemsPerPage, pageIndex * itemsPerPage + itemsPerPage).map((recipe, index) => (
                                              <div className="rounded-xl shadow-lg p-3 w-full sm:w-64 md:w-72 lg:w-80 h-max flex flex-col space-y-2" key={index}>
-                                                  <img src={`/api/images/${recipe.image_url}`} alt="" className='rounded-xl h-52 object-cover tablet:h-40' />
+                                                  <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt="" className='rounded-xl h-52 object-cover tablet:h-40' />
                                                   <Link to={`/recipe/${recipe.id}`}>
                                                        <p className="text-gray-500 tablet:text-sm text-lg my-2 font-medium hidden sm:block">{recipe.title}</p>
                                                        <p className="text-green-600 text-sm rounded-md bg-green-100 text-center p-1 font-medium">{t("learn_more")}</p>

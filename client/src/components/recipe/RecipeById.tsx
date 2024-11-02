@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ClientLayout from '../../layout/ClientLayout';
 import { useTranslation } from 'react-i18next';
+import VITE_API_URL from '../env/envKey';
 
 interface Recipe {
      id: number;
@@ -33,7 +34,6 @@ function RecipeById() {
      const [recipe, setRecipe] = useState<Recipe | null>(null);
      const [loading, setLoading] = useState(true);
      const [error, setError] = useState<string | null>(null);
-     const API_URL = import.meta.env.VITE_API_URL
 
      const handleTabChange = (tabName: "ingredients" | "instructions") => {
           setTab(tabName);
@@ -42,7 +42,7 @@ function RecipeById() {
      useEffect(() => {
           const fetchRecipe = async () => {
                try {
-                    const response = await axios.get(`${API_URL}/api/recipe/${id}`);
+                    const response = await axios.get(`${VITE_API_URL}/api/recipe/${id}`);
                     setRecipe(response.data);
                     console.log(response.data);
                } catch (error: unknown) {
@@ -56,7 +56,7 @@ function RecipeById() {
                }
           };
           fetchRecipe();
-     }, [API_URL, id]);
+     }, [VITE_API_URL, id]);
 
      if (loading) {
           return (
@@ -94,7 +94,7 @@ function RecipeById() {
                     {/* Recipe image */}
                     <div className="flex flex-col space-y-3 w-full md:w-1/2 xl:w-1/3">
                          <div className="mb-4">
-                              <img src={`${API_URL}/api/images/${recipe.image}`} alt={recipe.title} className="w-full h-52 object-cover rounded-md" />
+                              <img src={`${VITE_API_URL}/api/images/${recipe.image}`} alt={recipe.title} className="w-full h-52 object-cover rounded-md" />
                          </div>
                          <h1 className="text-xl font-bold mb-2 screen320:text-sm">{recipe.title}</h1>
                          <p className="text-gray-500 italic screen320:text-xs">{recipe.description}</p>

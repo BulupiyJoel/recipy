@@ -99,7 +99,7 @@ class User {
                const user = await this.db.db.get(`SELECT * FROM users WHERE email = ?`, [email]);
 
                if (!user) {
-                    throw new Error('User not found');
+                    return { userNotFound : true , message : "User not found with this email" }
                }
 
                const isValidPassword = await bcrypt.compare(password, user.password);

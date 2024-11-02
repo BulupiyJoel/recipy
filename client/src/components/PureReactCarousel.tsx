@@ -3,7 +3,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { ArrowLeftCircle, ArrowRightCircle } from "react-bootstrap-icons";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import carouselImg from "../assets/img/me.jpg"
+import carouselImg from "../assets/img/me.jpg"
 
 // Define the Slide interface
 interface Slide {
@@ -80,7 +80,7 @@ const PureReactCarousel = () => {
                     <Slider>
                          {slides.map((slide, index) => (
                               <Slide index={index} key={index}>
-                                   <img src={slide.src} alt={`Slide ${index + 1}`} className="w-full h-full object-cover rounded-xl" />
+                                   <img src={carouselImg} alt={`Slide ${index + 1}`} className="w-full h-full object-cover rounded-xl" />
                               </Slide>
                          ))}
                     </Slider>
