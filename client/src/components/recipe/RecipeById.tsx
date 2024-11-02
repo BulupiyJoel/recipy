@@ -118,13 +118,13 @@ function RecipeById() {
                     <div className="flex flex-col space-y-3 w-full md:w-1/2 xl:w-2/3">
                          <div className="flex justify-between mb-4">
                               <button
-                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "ingredients" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"} sm:text-xs sm:font-semibold`}
+                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "ingredients" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"} sm:text-xs sm:font-semibold screen320:text-xs screen320:font-medium`}
                                    onClick={() => handleTabChange("ingredients")}
                               >
                                    {t('ingredients')} {/* Translated ingredients label */}
                               </button>
                               <button
-                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "instructions" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"}  sm:text-xs sm:font-semibold`}
+                                   className={`hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-md ${tab === "instructions" ? "bg-green-700 text-white" : "bg-gray-200 text-gray-800"}  sm:text-xs sm:font-semibold screen320:text-xs screen320:font-medium`}
                                    onClick={() => handleTabChange("instructions")}
                               >
                                    {t('instructions')} {/* Translated instructions label */}
@@ -133,11 +133,11 @@ function RecipeById() {
 
                          {tab === "ingredients" ? (
                               <div className="flex flex-col space-y-3">
-                                   <h2 className="lg:text-lg font-bold sm:text-sm">{t('ingredients')} ({t('name')}-{t('quantity')}) : </h2>
+                                   <h2 className="lg:text-lg font-bold sm:text-sm screen320:text-sm">{t('ingredients')} ({t('name')}-{t('quantity')}) : </h2>
                                    <ul>
                                         {recipe.ingredients.map((ingredient, index) => (
                                              <div key={index}>
-                                                  <li className="flex justify-between mb-2 sm:text-xs">
+                                                  <li className="flex justify-between mb-2 sm:text-xs screen320:text-xs">
                                                        <p>{ingredient.name}</p>
                                                        <p>{ingredient.quantity}</p>
                                                   </li>

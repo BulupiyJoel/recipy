@@ -45,7 +45,7 @@ const PureReactCarousel = () => {
      }
 
      const arrowSize = (value: number): number => {
-          if (value <= 319) {
+          if (value <= 320) {
                return 11
           } else if (value <= 768) {
                return 25

@@ -1,10 +1,14 @@
 import { useTranslation } from "react-i18next"
-import { id as ussId } from "../../../../../components/auth/sessionData"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import VITE_API_URL from "../../../../env/envKey"
 
 const ProfileMobile = () => {
+
+     const sessionData = JSON.parse(sessionStorage.getItem("sessionData") ?? "{}");
+     const sessionValues = sessionData.userdata ?? ""
+
+     const { id } = sessionValues
 
      const { t } = useTranslation()
      const navigate = useNavigate()
@@ -29,7 +33,7 @@ const ProfileMobile = () => {
                <button onClick={handleLogout} className="text-xs font-medium bg-green-100 hover:bg-gray-200 px-1 py-0.5 rounded">
                     {t('log out')}
                </button>
-               <button onClick={() => toProfile(ussId)} className="text-xs font-medium bg-green-100 hover:bg-gray-200 px-1 py-0.5 rounded">
+               <button onClick={() => toProfile(id)} className="text-xs font-medium bg-green-100 hover:bg-gray-200 px-1 py-0.5 rounded">
                     {t('profile')}
                </button>
           </div>
