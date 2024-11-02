@@ -17,7 +17,7 @@ const Category = () => {
      // const API_URL = import.meta.env.VITE_API_URL;
 
      useEffect(() => {
-          axios.get(`/api/category/topFive`)
+          axios.get(`${VITE_API_URL}/api/category/topFive`)
                .then(response => {
                     const categories = response.data;
                     setCategories(categories);
