@@ -12,6 +12,7 @@ import { MegaMenu, NavbarBrand, NavbarCollapse, NavbarToggle } from "flowbite-re
 import MobileLinks from "./Responsive/Mobile/Links/MobileLinks";
 import LanguageMobile from "./Responsive/Mobile/Lang/LanguageDropdown";
 import ProfileMobile from "./Responsive/Mobile/Profile/ProfileMobile";
+import VITE_API_URL from "../env/envKey";
 
 
 const getInitials = (username: string): string => {
@@ -37,7 +38,7 @@ const PublicNavBar = () => {
 
      const toProfile = async (id: number) => {
           try {
-               const response = await axios.get(`/api/user/${id}`);
+               const response = await axios.get(`${VITE_API_URL}/api/user/${id}`);
                const userData = response.data;
                navigate('/profile', { state: { user: userData } });
           } catch (error) {
@@ -54,7 +55,7 @@ const PublicNavBar = () => {
 
      useEffect(() => {
           const fetchCategories = async () => {
-               await axios.get(`/api/category`)
+               await axios.get(`${VITE_API_URL}/api/category`)
                     .then(response => {
                          const categories = response.data;
                          setCategories(categories);
