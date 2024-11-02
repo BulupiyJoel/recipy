@@ -78,9 +78,9 @@ const PureReactCarousel = () => {
           <CarouselProvider naturalSlideWidth={100} naturalSlideHeight={windowBreakPoint(windowWidth)} totalSlides={slides.length}>
                <div className="relative">
                     <Slider>
-                         {slides.map((slide, index) => (
+                         {slides.map((slide,index) => (
                               <Slide index={index} key={index}>
-                                   <img src={carouselImg} alt={`Slide ${index + 1}`} className="w-full h-full object-cover rounded-xl" />
+                                   <img src={carouselImg} alt={`Slide ${slide.src + 1}`} className="w-full h-full object-cover rounded-xl" />
                               </Slide>
                          ))}
                     </Slider>
