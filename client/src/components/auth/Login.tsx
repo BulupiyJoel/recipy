@@ -54,19 +54,19 @@ const Login = () => {
                     backgroundRepeat: 'no-repeat' // Prevents the SVG from repeating
                 }}
             >
-                <form onSubmit={handleLogin} method="post" className="p-10 flex flex-col space-y-5 bg-white bg-opacity-80 shadow-lg rounded-lg screen320:shadow-2xl sm:items-center screen320:w-72 screen320:p-5">
+                <form onSubmit={handleLogin} method="post" className="p-10 screen320:p-5 flex flex-col space-y-5 bg-white bg-opacity-80 shadow-lg rounded-lg sm:shadow-2xl sm:items-center screen320:w-64 sm:p-5">
                     <center>
-                        <h1 className="font-semibold text-2xl screen320:text-sm">{t("login")}</h1>
+                        <h1 className="font-semibold text-2xl sm:text-sm screen320:text-sm">{t("login")}</h1>
                         <p className="text-red-600 font-medium text-sm">{message}</p>
                     </center>
-                    <div className="w-96 screen320:w-64">
-                        <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email..." className="text-sm p-3 focus:rounded-md focus:border-2 w-full border-b border-1 focus:outline-none screen320:w-64 placeholder:screen320:text-xs"/>
+                    <div className="w-96 sm:w-64 screen320:w-64">
+                        <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email..." className="text-sm p-3 focus:rounded-md focus:border-2 w-full border-b border-1 focus:outline-none sm:w-64 screen320:w-52 placeholder:sm:text-xs"/>
                     </div>
-                    <div className="w-96 screen320:w-64">
-                        <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="text-sm p-3 focus:rounded-md focus:border-2 w-full border-b border-1 focus:outline-none screen320:w-64 placeholder:screen320:text-xs" placeholder="Mot de passe..." />
+                    <div className="w-96 sm:w-64 screen320:w-64">
+                        <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="text-sm p-3 focus:rounded-md focus:border-2 w-full border-b border-1 focus:outline-none sm:w-64 screen320:w-52 placeholder:sm:text-xs" placeholder="Mot de passe..." />
                     </div>
-                    <button type="submit" className="w-96 bg-green-600 rounded-md text-sm font-semibold py-3 text-white screen320:w-64 screen320:py-2">{t("login")}</button>
-                    <Link to='/register' className="text-blue-600 screen320:text-sm">{t("register")}</Link>
+                    <button type="submit" className="w-96 bg-green-600 rounded-md text-sm font-semibold py-3 text-white sm:w-64 screen320:w-52 sm:py-2">{t("login")}</button>
+                    <Link to='/register' className="text-blue-600 sm:text-sm screen320:text-sm">{t("register")}</Link>
                 </form>
             </div>
             <Footer />

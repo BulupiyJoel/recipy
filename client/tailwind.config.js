@@ -23,6 +23,7 @@ export default {
       screens: {
         'screen320': { 'raw': '(max-width: 375px) and (max-height: 680px)' },
         'tablet': { 'raw': '(max-width: 768px) and (max-height: 1080px)' },
+        'tecno': { 'raw': '(max-width: 375px) and (max-height: 680px)' }
       },
     },
   },
