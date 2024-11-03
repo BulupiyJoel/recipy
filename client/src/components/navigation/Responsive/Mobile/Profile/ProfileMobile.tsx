@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-// import VITE_API_URL from "../../../../env/envKey"
+import VITE_API_URL from "../../../../env/envKey";
 
 const ProfileMobile = () => {
 
@@ -20,7 +20,7 @@ const ProfileMobile = () => {
 
      const toProfile = async (id: number) => {
           try {
-               const response = await axios.get(`/api/user/${id}`);
+               const response = await axios.get(`${VITE_API_URL}/api/user/${id}`);
                const userData = response.data;
                navigate('/profile', { state: { user: userData } });
           } catch (error) {
