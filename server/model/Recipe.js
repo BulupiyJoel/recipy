@@ -358,6 +358,21 @@ class Recipe {
           }
      }
 
+     async getTrendingsRecipes() {
+          try {
+
+               const trendingRecipes = await this.db.db.all(`SELECT count(*) as likes,r.title,r.description,r.image_url,u.username as username FROM recipes r
+               INNER JOIN likes l ON l.recipe_id=r.id
+               INNER JOIN users u ON r.userId=u.id
+               GROUP BY l.recipe_id ORDER BY likes DESC`)
+               return trendingRecipes
+               
+          } catch (error) {
+               console.error(`Can't retrieve trending recipes : ${error}`);
+               throw new Error(`Error in the model : ${error}`);
+          }
+     }
+
 }
 
 export default Recipe;

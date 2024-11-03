@@ -24,7 +24,7 @@ const Register = () => {
                     email,
                     password
                });
-               console.log(`Response message : ${response.data.message}`);
+               // console.log(`Response message : ${response.data.message}`);
                if (response.data.isCreated) {
                     setUsername("");
                     setEmail("");

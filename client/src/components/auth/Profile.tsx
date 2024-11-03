@@ -32,7 +32,7 @@ const Profile = () => {
                     email,
                     id,
                });
-               console.log(response.data.message);
+               // console.log(response.data.message);
                if (response.data.userUpdated) {
                     setMessage(response.data.message)
                     const sessionData = {
@@ -58,6 +58,7 @@ const Profile = () => {
 
      return (
           <ClientLayout>
+               <div className="h-screen">
                <div className="max-w-md mx-auto p-4 mt-10 bg-white rounded-lg shadow-md">
                     <h1 className="lg:text-2xl text-xl font-semibold mb-4 sm:text-3xl">
                          {t('profile')}
@@ -106,6 +107,7 @@ const Profile = () => {
                               {t('update_profile')}
                          </button>
                     </form>
+               </div>
                </div>
           </ClientLayout>
      );

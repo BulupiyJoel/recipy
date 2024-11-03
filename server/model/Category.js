@@ -107,7 +107,7 @@ class Category {
 
      async topFiveCategories(){
           try {
-               const topFive = await this.db.db.all("SELECT COUNT(*) as total_recipes_by_category , c.name ,c.id FROM recipes r INNER JOIN categories c ON c.id=r.category_id GROUP BY category_id LIMIT 5")
+               const topFive = await this.db.db.all("SELECT COUNT(*) as total_recipes_by_category , c.name ,c.id FROM recipes r INNER JOIN categories c ON c.id=r.category_id GROUP BY category_id ORDER BY total_recipes_by_category DESC LIMIT 5")
                return topFive
           } catch (error) {
                throw new Error(`Error on top 5 categories, exception : ${error}`);
