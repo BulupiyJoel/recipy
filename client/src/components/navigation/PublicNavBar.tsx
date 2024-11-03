@@ -1,6 +1,3 @@
-// "use client"
-
-import { AiOutlineSearch } from "react-icons/ai";
 import PublicLinks from "./PublicLinks";
 import AppLogo from "../AppLogo";
 import { useEffect, useState } from "react";
@@ -12,7 +9,7 @@ import { MegaMenu, NavbarBrand, NavbarCollapse, NavbarToggle } from "flowbite-re
 import MobileLinks from "./Responsive/Mobile/Links/MobileLinks";
 import LanguageMobile from "./Responsive/Mobile/Lang/LanguageDropdown";
 import ProfileMobile from "./Responsive/Mobile/Profile/ProfileMobile";
-import VITE_API_URL from "../env/envKey";
+// import VITE_API_URL from "../env/envKey";
 
 
 const getInitials = (username: string): string => {
@@ -26,19 +23,13 @@ const handleLogout = () => {
      window.location.href = "/login";
 }
 
-interface Category {
-     id: number,
-     name: string
-}
-
 const PublicNavBar = () => {
      const navigate = useNavigate();
      const [initials, setInitials] = useState<string>();
-     const [categories, setCategories] = useState<Category[]>([]);
 
      const toProfile = async (id: number) => {
           try {
-               const response = await axios.get(`${VITE_API_URL}/api/user/${id}`);
+               const response = await axios.get(`/api/user/${id}`);
                const userData = response.data;
                navigate('/profile', { state: { user: userData } });
           } catch (error) {
@@ -54,21 +45,7 @@ const PublicNavBar = () => {
      }
 
      useEffect(() => {
-          const fetchCategories = async () => {
-               await axios.get(`${VITE_API_URL}/api/category`)
-                    .then(response => {
-                         const categories = response.data;
-                         setCategories(categories);
-                         console.log("Categories : ", categories);
-                    })
-                    .catch(error => {
-                         console.error(error);
-                    });
-          }
-
           setInitials(getInitials(sessionDataJson.userdata.username))
-
-          fetchCategories()
      }, [initials, sessionDataJson.userdata.username])
 
 
@@ -86,7 +63,7 @@ const PublicNavBar = () => {
                     </NavbarToggle>
                     <NavbarCollapse>
                          <MobileLinks />
-                         <div className="flex flex-row justify-between mt-3">
+                         <div className="flex flex-row justify-between mt-3 md:mt-0">
                               <LanguageMobile />
                               <ProfileMobile />
                          </div>
@@ -97,32 +74,6 @@ const PublicNavBar = () => {
                <div className="hidden lg:flex flex-row justify-between items-center">
                     {/* AppName */}
                     <AppLogo />
-
-                    {/* SearchBar */}
-                    <div className="flex-grow max-w-xs hidden">
-                         <form action="" method="post" className="flex flex-row">
-                              <div className="bg-gray-200 flex flex-row py-1 px-3 space-x-2 rounded-l">
-                                   <select name="" id="" className="bg-transparent font-medium text-sm">
-                                        <option value="">{t('every_categories')}</option>
-                                        {categories.map((category, index) => (
-                                             <option key={index} value={category.id}>{category.name}</option>
-                                        ))}
-                                   </select>
-                                   <div className="h-8 w-0.5 rounded-full bg-gray-400"></div>
-                                   <input
-                                        type="text"
-                                        name=""
-                                        id=""
-                                        placeholder={`${t("keyword")}...`}
-                                        className="placeholder:text-gray-400 text-sm border-0 bg-transparent focus:outline-none"
-                                        maxLength={20}
-                                   />
-                              </div>
-                              <button type="submit">
-                                   <AiOutlineSearch className="bg-green-600 text-white p-2 rounded-r" size={40} />
-                              </button>
-                         </form>
-                    </div>
 
                     {/* Routes */}
                     <PublicLinks />

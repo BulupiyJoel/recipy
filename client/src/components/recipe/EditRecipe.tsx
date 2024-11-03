@@ -159,7 +159,7 @@ const EditRecipe: React.FC = () => {
                          },
                     });
 
-                    console.log('Image uploaded successfully:', response.data);
+                    // console.log('Image uploaded successfully:', response.data);
                     if (response.data.newImageSaved) {
                          setMessage(response.data.message);
                          setShowModal(true)
@@ -381,7 +381,7 @@ const EditRecipe: React.FC = () => {
                          <div>
                               <label className="block mb-2 sm:text-sm mt-5">Upload a new image</label>
                               <div className="flex flex-col lg:flex-row lg:space-x-4 justify-between md:flex-col sm:space-x-0 sm:space-y-2 space-y-2">
-                                   <img src={`/api/images/${recipe.image}`} alt="" className="rounded-md object-cover sm:h-52 sm:w-3/4" />
+                                   <img src={`${VITE_API_URL}/api/images/${recipe.image}`} alt="" className="rounded-md object-cover sm:h-52 sm:w-3/4" />
                                    <div>
                                         <input
                                              type="file"

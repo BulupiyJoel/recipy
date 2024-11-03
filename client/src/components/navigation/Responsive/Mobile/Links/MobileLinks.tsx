@@ -24,11 +24,11 @@ const MobileLinks = () => {
   ]
 
   return (
-    linksData.map((link, index) => (
-      <NavbarLink href={link.route} key={index}>
-        {t(link.title)}
-      </NavbarLink>
-    ))
+      linksData.map((link, index) => (
+        <NavbarLink href={link.route} key={index} className={`${window.innerWidth <= 640 ? '' : 'm-5' }`}>
+          <span className={`${window.innerWidth <= 810 && 'text-xs' }`}>{t(link.title)}</span>
+        </NavbarLink>
+      ))
   )
 }
 

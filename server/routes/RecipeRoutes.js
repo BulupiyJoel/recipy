@@ -74,17 +74,6 @@ const RecipeRoutes = () => {
           }
      });
 
-     // Fetch recipe by ID
-     app.get("/api/recipe/:id", async (req, res) => {
-          const id = req.params.id;
-          try {
-               const recipeById = await recipe.getById(id);
-               res.status(200).json(recipeById);
-          } catch (error) {
-               res.status(500).json({ message: `Error in the server: ${error.message}` });
-          }
-     });
-
      // Upload a new image
      app.post('/api/upload-image', upload.single('newImage'), async (req, res) => {
           if (!req.file) {
@@ -93,6 +82,17 @@ const RecipeRoutes = () => {
 
           res.status(201).json({ message: "Image uploaded successfully", filename: req.file.filename });
      });
+
+     //Trendings
+     app.get("/api/recipe/trendings", async (req, res) => {
+          try {
+               const trendings = await recipe.getTrendingsRecipes()
+               return res.status(200).json(trendings)
+          } catch (error) {
+               console.log(`Server error : ${error}`);
+               return res.status(500).json({ message: `Error on trendings : ${error}` })
+          }
+     })
 
      // Fetch recipes by user ID
      app.get("/api/recipe/user/:id", async (req, res) => {
@@ -105,6 +105,17 @@ const RecipeRoutes = () => {
           }
      });
 
+          // Fetch recipe by ID
+     app.get("/api/recipe/:id", async (req, res) => {
+          const id = req.params.id;
+          try {
+               const recipeById = await recipe.getById(id);
+               return res.status(200).json(recipeById);
+          } catch (error) {
+               return res.status(500).json({ message: `Error in the server: ${error.message}` });
+          }
+     });
+     
      // Update recipe
      app.put("/api/recipe/:id", async (req, res) => {
           const id = req.params.id;
@@ -188,25 +199,6 @@ const RecipeRoutes = () => {
           }
 
      })
-
-     app.get("/api/search", async (req, res) => {
-          const { category, keyword } = req.query; // Use req.query for GET requests
-
-          // Validate parameters
-          if (!category || !keyword) {
-               return res.status(400).json({ message: "Both categoryId and keyword are required." });
-          }
-
-          try {
-               const searchFilter = await recipe.filterByCategoryAndKeyword(category, keyword);
-               // Respond with the search result
-               // Respond with the search result
-               res.status(200).json(searchFilter);
-          } catch (error) {
-               console.error(`Error in the server: ${error}`); // Use console.error for logging errors
-               res.status(500).json({ message: "An error occurred while processing your request." });
-          }
-     });
 
 };
 

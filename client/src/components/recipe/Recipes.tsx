@@ -35,10 +35,6 @@ function Recipes() {
           return <div>Loading...</div>;
      }
 
-     // if (error) {
-     //   return <div>Error: {error}</div>;
-     // }
-
      return (
           <div>
                <h1>Recipes</h1>

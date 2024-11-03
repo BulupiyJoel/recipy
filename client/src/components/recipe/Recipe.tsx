@@ -135,7 +135,7 @@ const Recipe: React.FC = () => {
                     },
                });
 
-               console.log('Recipe created successfully:', response.data);
+               // console.log('Recipe created successfully:', response.data);
                if (response.data.recipeCreated) {
                     setMessage(response.data.message);
                     setShowModal(true);
@@ -171,7 +171,7 @@ const Recipe: React.FC = () => {
           };
 
           fetchData();
-     }, [VITE_API_URL]);
+     }, []);
 
      return (
           <ClientLayout>
