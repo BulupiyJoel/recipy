@@ -5,6 +5,7 @@ import ClientLayout from "../layout/ClientLayout";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import TrendingRecipes from "../components/TrendingRecipes";
+import VITE_API_URL from "../components/env/envKey";
 
 const Home = () => {
   const [loadRecipe, setLoadRecipe] = useState(true);
@@ -18,7 +19,7 @@ const Home = () => {
 
   const fetchRecipes = async () => {
     try {
-      const response = await axios.get(`/api/recipe`);
+      const response = await axios.get(`${VITE_API_URL}/api/recipe`);
       setRecipes(response.data);
     } catch (error) {
       console.error(error);
@@ -28,10 +29,10 @@ const Home = () => {
   };
   const fetchTopFive = async () => {
     try {
-      const response = await axios.get(`/api/category/topFive`)
+      const response = await axios.get(`${VITE_API_URL}/api/category/topFive`)
       const categories = response.data;
       setCategories(categories);
-      console.log('Categories : ', categories);
+      // console.log('Categories : ', categories);
     } catch (error) {
       console.error(error);
     } finally {
@@ -40,9 +41,9 @@ const Home = () => {
   }
   const fetchTrendings = async () => {
     try {
-      const response = await axios.get(`/api/recipe/trendings`);
+      const response = await axios.get(`${VITE_API_URL}/api/trendings`);
       setTrendings(response.data);
-      console.log("Trendings : ", response.data);
+      // console.log("Trendings : ", response.data);
     } catch (error) {
       console.error("Error fetching slides : ", error);
     } finally {

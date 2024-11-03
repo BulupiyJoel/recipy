@@ -84,7 +84,7 @@ const RecipeRoutes = () => {
      });
 
      //Trendings
-     app.get("/api/recipe/trendings", async (req, res) => {
+     app.get("/api/trendings", async (req, res) => {
           try {
                const trendings = await recipe.getTrendingsRecipes()
                return res.status(200).json(trendings)
@@ -115,7 +115,7 @@ const RecipeRoutes = () => {
                return res.status(500).json({ message: `Error in the server: ${error.message}` });
           }
      });
-     
+
      // Update recipe
      app.put("/api/recipe/:id", async (req, res) => {
           const id = req.params.id;
