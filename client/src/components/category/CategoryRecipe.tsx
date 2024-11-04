@@ -124,7 +124,7 @@ const CategoryRecipe = () => {
                                         <div className="flex flex-wrap justify-center md:p-0 md:justify-evenly sm:justify-evenly gap-4 p-3">
                                              {recipies.slice(pageIndex * itemsPerPage, pageIndex * itemsPerPage + itemsPerPage).map((recipe, index) => (
                                                   <div className="rounded-xl shadow p-3 w-full sm:w-64 md:w-72 lg:w-80 h-max flex flex-col space-y-2 m-2" key={index}>
-                                                       <img src={`/api/images/${recipe.image_url}`} alt="" className='rounded-xl h-52 object-cover md:h-40' />
+                                                       <img src={`${VITE_API_URL}/api/images/${recipe.image_url}`} alt="" className='rounded-xl h-52 object-cover md:h-40' />
                                                        <Link to={`/recipe/${recipe.id}`}>
                                                             <p className="text-gray-500 md:text-sm text-lg my-2 font-medium hidden sm:block">{recipe.title}</p>
                                                             <p className="text-green-600 text-sm rounded-md bg-green-100 text-center p-1 font-medium">{t("learn_more")}</p>

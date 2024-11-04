@@ -1,6 +1,8 @@
 import { CarouselProvider, Slide, Slider } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { useEffect, useState } from 'react';
+import VITE_API_URL from './env/envKey';
+
 
 interface Recipe {
      title: string;
@@ -62,7 +64,7 @@ const TrendingRecipes = ({ trendings }: Props) => {
                               <Slide index={index} key={index}>
                                    <div className="relative h-52 mr-1"> {/* Set a fixed height for the slide */}
                                         <img
-                                             src={`/api/images/${trending.image_url}`}
+                                             src={`${VITE_API_URL}/api/images/${trending.image_url}`}
                                              alt={`Image of ${trending.description}`}
                                              className={`w-full ${window.innerWidth <= 840 && 'h-36'} lg:h-52 object-cover rounded-xl`}
                                         />
