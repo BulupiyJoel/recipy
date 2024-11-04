@@ -62,17 +62,17 @@ const TrendingRecipes = ({ trendings }: Props) => {
                     <Slider>
                          {trendings.map((trending, index) => (
                               <Slide index={index} key={index}>
-                                   <div className="relative h-52 mr-1"> {/* Set a fixed height for the slide */}
+                                   <div className="relative h-52 mr-1 tablet:h-52"> {/* Set a fixed height for the slide */}
                                         <img
                                              src={`${VITE_API_URL}/api/images/${trending.image_url}`}
                                              alt={`Image of ${trending.description}`}
-                                             className={`w-full ${window.innerWidth <= 840 && 'h-36'} lg:h-52 object-cover rounded-xl`}
+                                             className={`w-full lg:h-52 object-cover rounded-xl tablet:h-36`}
                                         />
-                                        <div className={`absolute top-0 left-0 w-full h-full flex flex-col lg:justify-between ${window.innerWidth <= 810 && 'justify-center' } p-4 rounded-xl bg-black bg-opacity-50`}> {/* Added background for better text visibility */}
-                                             <p className="text-orange-600 font-medium lg:text-3xl sm:text-sm screen320:text-xs">Trendings</p>
+                                        <div className={`absolute top-0 left-0 w-full h-full flex flex-col lg:justify-between ${window.innerWidth <= 810 && 'justify-center' } p-4 rounded-xl bg-black bg-opacity-50 tablet:justify-start`}> {/* Added background for better text visibility */}
+                                             <p className="text-orange-600 font-medium lg:text-3xl sm:text-sm screen320:text-xs tablet:text-xs">Trendings</p>
                                              <p className="text-white">
-                                                  <span className="font-semibold lg:text-2xl sm:text-sm screen320:text-xs">{trending.description}</span> <br />
-                                                  <span className="screen320:text-xs font-semibold lg:text-sm sm:text-xs">By {trending.username}</span>
+                                                  <span className="font-semibold lg:text-2xl sm:text-sm screen320:text-xs tablet:text-xs">{trending.description}</span> <br />
+                                                  <span className="screen320:text-xs font-semibold lg:text-sm sm:text-xs tablet:text-xs">By {trending.username}</span>
                                              </p>
                                         </div>
                                    </div>
