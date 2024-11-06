@@ -37,7 +37,7 @@ const TrendingRecipes = ({ trendings }: Props) => {
 
      const windowBreakPoint = (value: number): number => {
           if (value <= 640) {
-               return 60; // Height for small screens
+               return 70; // Height for small screens
           } else if (value <= 768) {
                return 30; // Height for medium screens
           } else if(value <= 810){
@@ -62,17 +62,17 @@ const TrendingRecipes = ({ trendings }: Props) => {
                     <Slider>
                          {trendings.map((trending, index) => (
                               <Slide index={index} key={index}>
-                                   <div className="relative h-52 mr-1 tablet:h-52"> {/* Set a fixed height for the slide */}
+                                   <div className="relative h-52 mr-1 tablet:h-60"> {/* Set a fixed height for the slide */}
                                         <img
                                              src={`${VITE_API_URL}/api/images/${trending.image_url}`}
                                              alt={`Image of ${trending.description}`}
-                                             className={`w-full lg:h-52 object-cover rounded-xl tablet:h-36`}
+                                             className={`w-full lg:h-52 object-cover rounded-xl tablet:rounded-none tablet:h-64`}
                                         />
-                                        <div className={`absolute top-0 left-0 w-full h-full flex flex-col lg:justify-between ${window.innerWidth <= 810 && 'justify-center' } p-4 rounded-xl bg-black bg-opacity-50 tablet:justify-start`}> {/* Added background for better text visibility */}
+                                        <div className={`absolute top-0 left-0 w-full h-full flex flex-col lg:justify-between p-4 rounded-xl tablet:rounded-none bg-black bg-opacity-50`}> {/* Added background for better text visibility */}
                                              <p className="text-orange-600 font-medium lg:text-3xl sm:text-sm screen320:text-xs tablet:text-xs">Trendings</p>
                                              <p className="text-white">
-                                                  <span className="font-semibold lg:text-2xl sm:text-sm screen320:text-xs tablet:text-xs">{trending.description}</span> <br />
-                                                  <span className="screen320:text-xs font-semibold lg:text-sm sm:text-xs tablet:text-xs">By {trending.username}</span>
+                                                  <span className="font-semibold lg:text-2xl sm:text-sm screen320:text-xs tablet:text-mobile">{trending.description}</span> <br />
+                                                  <span className="screen320:text-xs font-semibold lg:text-sm sm:text-xs tablet:text-mobile">By {trending.username}</span>
                                              </p>
                                         </div>
                                    </div>
