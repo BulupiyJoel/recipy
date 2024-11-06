@@ -26,15 +26,24 @@ interface Recipe {
      total_likes: number
 }
 
-interface Props {
-     recipes: Recipe[]; // Change to accept recipes as a prop
-}
-
-const RecipeCard = ({ recipes }: Props) => {
+const RecipeCard = () => {
      const { t } = useTranslation();
      const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+     const [recipes,setRecipes] = useState<Recipe[]>([]);
+     const [loading, setLoading] = useState(true);
      const sessionItem = JSON.parse(sessionStorage.getItem("sessionData") ?? "{}");
      const ussId = sessionItem.userdata?.id; // Optional chaining for safety
+
+     const fetchRecipes = async () => {
+          try {
+               const response = await axios.get(`${VITE_API_URL}/api/recipe`);
+               setRecipes(response.data);
+          } catch (error) {
+               console.error(error);
+          } finally {
+               setLoading(false);
+          }
+     };
 
      const handleLike = async (recipeId: number) => {
           try {
@@ -42,6 +51,7 @@ const RecipeCard = ({ recipes }: Props) => {
                     recipe_id: recipeId,
                     userId: ussId
                });
+               fetchRecipes();
                // Optionally, you can refresh the recipes here or manage it in the Home component
           } catch (error) {
                console.error(`Error on axios : ${error}`);
@@ -49,6 +59,7 @@ const RecipeCard = ({ recipes }: Props) => {
      };
 
      useEffect(() => {
+          fetchRecipes();
           const handleResize = () => {
                setWindowWidth(window.innerWidth);
           };
@@ -61,6 +72,16 @@ const RecipeCard = ({ recipes }: Props) => {
 
      const itemsPerPage = 6;
      const totalSlides = Math.ceil(recipes.length / itemsPerPage);
+
+     if (loading) {
+          return (
+               <div className="flex justify-center items-center h-screen">
+                    <div className="bg-green-600 text-white p-4 rounded-md shadow-md">
+                         <p>{t('loading')}...</p>
+                    </div>
+               </div>
+          );
+     }
 
      return (
           <div className="flex flex-col">

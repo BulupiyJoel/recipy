@@ -8,25 +8,13 @@ import TrendingRecipes from "../components/TrendingRecipes";
 import VITE_API_URL from "../components/env/envKey";
 
 const Home = () => {
-  const [loadRecipe, setLoadRecipe] = useState(true);
   const [loadCategory, setLoadCategory] = useState(true);
   const [loadTrendings, setLoadTrendings] = useState(true);
-  const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [trendings, setTrendings] = useState([]);
 
   const { t } = useTranslation();
 
-  const fetchRecipes = async () => {
-    try {
-      const response = await axios.get(`${VITE_API_URL}/api/recipe`);
-      setRecipes(response.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoadRecipe(false);
-    }
-  };
   const fetchTopFive = async () => {
     try {
       const response = await axios.get(`${VITE_API_URL}/api/category/topFive`)
@@ -39,6 +27,7 @@ const Home = () => {
       setLoadCategory(false);
     }
   }
+
   const fetchTrendings = async () => {
     try {
       const response = await axios.get(`${VITE_API_URL}/api/trendings`);
@@ -53,11 +42,10 @@ const Home = () => {
 
   useEffect(() => {
     fetchTopFive()
-    fetchRecipes()
     fetchTrendings()
   }, []);
 
-  if (loadRecipe || loadCategory || loadTrendings) {
+  if (loadCategory || loadTrendings) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="bg-green-600 text-white p-4 rounded-md shadow-md">
@@ -73,7 +61,7 @@ const Home = () => {
         <div className="flex flex-col space-y-10">
           <TrendingRecipes trendings={trendings}/>
           <Category categories={categories} />
-          <RecipeCard recipes={recipes} /> {/* Pass the recipes to RecipeCard */}
+          <RecipeCard /> {/* Pass the recipes to RecipeCard */}
         </div>
       </ClientLayout>
     </>
